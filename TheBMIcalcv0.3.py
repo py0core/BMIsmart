@@ -7,6 +7,7 @@ heightinchmeter = "none"
 weightkglb = "none"
 # What system user is typing
 metric_sys = False
+sys_chosed = "none"
 
 #functions
 #MetricBMIfunction
@@ -25,24 +26,31 @@ def checkit(x, y):
         #print("all good")#DEBUGGING
     except ValueError:
         print("Please input only numbers.")
-        exit()
+        return False
+        #exit()
 # check if right input on system 1 or 2.
 def checksystemchoose(x):
     if x is not 1 and x is not 2:
         print("Please input only 1 or 2.")
-        exit()
+        #exit()
     else:
         pass
 # What the job of this calculator
 print("Easy to use BMI calculator in Python!\n")#v0.2 added \n for making it look better
 # what system user want to work with? #updatev0.2-select by number for easier understanding
-sys_chosed = input("For Metric system press 1, for Imperial press 2: ")
-#check is the inuput only numbers
-checkit(sys_chosed, sys_chosed)
-#convert input to number
-sys_chosed = int(sys_chosed)
-#check if right input on system
-checksystemchoose(sys_chosed)
+# entering a loop to prevent exit of the program on wrong answer
+while sys_chosed != 1 and sys_chosed != 2:
+    sys_chosed = input("For Metric system press 1, for Imperial press 2: ")
+    #check is the inuput only numbers
+    #if not continue the loop until user got it right
+    if checkit(sys_chosed, sys_chosed) == False:
+        continue
+    else:
+        #cast to int for calculation
+        sys_chosed = int(sys_chosed)
+        #check if right input on system, numbers 1 or 2
+        checksystemchoose(sys_chosed)
+        # if everything right continue with the program
 
 
 
